@@ -87,8 +87,8 @@ const Portfolio = () => {
       description: "Protótipo de portfolio para divulgação e informações comerciais de escritório de advocacia",
       image: advteixeiraImg,
       tags: ["HTML", "CSS", "JavaScript"],
-      githubUrl: "arttest19.github.io",
-      showDemo: false,
+      demoUrl: "https://arttest19.github.io/",
+      showDemo: true,
     },
   ];
 
