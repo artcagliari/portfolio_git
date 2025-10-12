@@ -43,12 +43,7 @@ const About = () => {
     <section id="about" className="py-20 relative">
       <div className="container mx-auto px-4">
         <div className="mb-16">
-          <h2 
-            className="text-4xl md:text-5xl font-bold mb-8 text-center"
-            data-aos="fade-down"
-            data-aos-duration="1000"
-            data-aos-delay="200"
-          >
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center animate-fade-in-up">
             Sobre <span 
               className="text-primary"
               style={{
@@ -66,34 +61,20 @@ const About = () => {
           {/* About Content with Photo */}
           <div className="grid lg:grid-cols-3 gap-8 items-center max-w-4xl mx-auto">
             {/* Photo Section */}
-            <div 
-              className="lg:col-span-1 flex justify-center lg:justify-start"
-              data-aos="fade-right"
-              data-aos-duration="1000"
-              data-aos-delay="400"
-            >
+            <div className="lg:col-span-1 flex justify-center lg:justify-start animate-fade-in-left">
               <div className="relative w-48 h-48 lg:w-56 lg:h-56 hover:scale-105 transition-transform duration-300">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-accent/30 rounded-2xl blur-2xl animate-pulse-glow" />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-accent/30 rounded-2xl blur-2xl" />
                 <img
                   src={profileImage}
                   alt="Artur Cagliari"
                   className="relative w-full h-full object-cover rounded-2xl border-2 border-primary/20 shadow-2xl hover:border-primary/40 transition-all duration-300"
                 />
                 
-                {/* Floating particles around photo */}
-                <div className="absolute -top-2 -right-2 w-3 h-3 bg-accent/60 rounded-full animate-bounce" />
-                <div className="absolute -bottom-2 -left-2 w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }} />
-                <div className="absolute top-1/2 -left-4 w-1.5 h-1.5 bg-accent/40 rounded-full animate-bounce" style={{ animationDelay: '1s' }} />
               </div>
             </div>
 
             {/* Text Section */}
-            <div 
-              className="lg:col-span-2 text-center lg:text-left"
-              data-aos="fade-left"
-              data-aos-duration="1000"
-              data-aos-delay="600"
-            >
+            <div className="lg:col-span-2 text-center lg:text-left animate-fade-in-right">
               <p className="text-muted-foreground text-lg leading-relaxed">
                 Sou desenvolvedor front-end de Carlos Barbosa, especializado em criar interfaces modernas, responsivas e de fácil usabilidade. Tenho 18 anos e já possuo experiência com HTML, CSS e JavaScript, sempre buscando unir design e funcionalidade. Apaixonado por tecnologia, estou em constante aprendizado e atualmente focado em adquirir conhecimentos em TypeScript e React. Estudo no IFRS Campus Bento, no curso técnico de Informática.
               </p>
@@ -102,40 +83,26 @@ const About = () => {
         </div>
 
         <Tabs defaultValue="skills" className="w-full max-w-4xl mx-auto">
-          <TabsList 
-            className="grid w-full grid-cols-3 mb-8"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="800"
-          >
+          <TabsList className="grid w-full grid-cols-3 mb-8 animate-fade-in-up animate-stagger-1">
             <TabsTrigger 
               value="skills" 
               className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:scale-105 transition-transform duration-300"
-              data-aos="zoom-in"
-              data-aos-duration="800"
-              data-aos-delay="1000"
             >
-              <Code2 className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+              <Code2 className="w-4 h-4 mr-2" />
               Habilidades
             </TabsTrigger>
             <TabsTrigger 
               value="experience" 
               className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:scale-105 transition-transform duration-300"
-              data-aos="zoom-in"
-              data-aos-duration="800"
-              data-aos-delay="1200"
             >
-              <Briefcase className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+              <Briefcase className="w-4 h-4 mr-2" />
               Experiência
             </TabsTrigger>
             <TabsTrigger 
               value="education" 
               className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:scale-105 transition-transform duration-300"
-              data-aos="zoom-in"
-              data-aos-duration="800"
-              data-aos-delay="1400"
             >
-              <GraduationCap className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+              <GraduationCap className="w-4 h-4 mr-2" />
               Educação
             </TabsTrigger>
           </TabsList>
