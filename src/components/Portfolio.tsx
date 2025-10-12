@@ -79,7 +79,7 @@ const Portfolio = () => {
       description: "Sistema escolar para inclusão e gerenciamento de PEIs (Planos Educacionais Individualizados)",
       image: napneImg,
       tags: ["HTML", "CSS", "JavaScript"],
-      githubUrl: "https://github.com/artcagliari/Prototipo-front-end-de-projeto-integrado",
+      githubUrl: "https://github.com/artcagliari/Prot-tito-front-end-de-projeto-integrado",
       showDemo: false,
     },
     {
