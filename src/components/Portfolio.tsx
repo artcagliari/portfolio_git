@@ -225,48 +225,29 @@ const Portfolio = () => {
                     ))}
                   </motion.div>
 
-                  <motion.div 
-                    className="flex gap-3 pt-2"
-                    variants={containerVariants}
-                  >
+                  <div className="flex gap-3 pt-2">
                     {project.showDemo ? (
-                      <motion.div variants={itemVariants} className="w-full">
-                        <motion.div
-                          whileHover={{ scale: 1.05, rotate: 1 }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{ type: "spring" as const, stiffness: 400, damping: 10 }}
-                        >
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="w-full border-primary/30 hover:bg-primary/10"
-                            onClick={() => window.open(project.demoUrl, "_blank")}
-                          >
-                            <ExternalLink className="w-4 h-4 mr-2" />
-                            Demo
-                          </Button>
-                        </motion.div>
-                      </motion.div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full border-primary/30 hover:bg-primary/10 hover:scale-105 transition-all duration-200"
+                        onClick={() => window.open(project.demoUrl, "_blank")}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Demo
+                      </Button>
                     ) : (
-                      <motion.div variants={itemVariants} className="w-full">
-                        <motion.div
-                          whileHover={{ scale: 1.05, rotate: 1 }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{ type: "spring" as const, stiffness: 400, damping: 10 }}
-                        >
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="w-full border-primary/30 hover:bg-primary/10"
-                            onClick={() => window.open(project.githubUrl, "_blank")}
-                          >
-                            <Github className="w-4 h-4 mr-2" />
-                            Code
-                          </Button>
-                        </motion.div>
-                      </motion.div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full border-primary/30 hover:bg-primary/10 hover:scale-105 transition-all duration-200"
+                        onClick={() => window.open(project.githubUrl, "_blank")}
+                      >
+                        <Github className="w-4 h-4 mr-2" />
+                        Code
+                      </Button>
                     )}
-                  </motion.div>
+                  </div>
                 </div>
               </Card>
             </motion.div>
