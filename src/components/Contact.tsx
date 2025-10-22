@@ -52,7 +52,6 @@ const Contact = () => {
     },
   ];
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -143,7 +142,6 @@ const Contact = () => {
                     <p className="text-sm text-muted-foreground break-all animate-fade-in-up animate-stagger-1">{method.value}</p>
                   </div>
                   
-                  {/* Floating particles */}
                   <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-accent/60 rounded-full opacity-0 group-hover:opacity-100 animate-bounce transition-all duration-500" />
                   <div className="absolute bottom-2 left-2 w-1 h-1 bg-primary/60 rounded-full opacity-0 group-hover:opacity-100 animate-bounce transition-all duration-500" style={{ animationDelay: '0.3s' }} />
                 </div>

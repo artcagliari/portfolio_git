@@ -58,9 +58,7 @@ const About = () => {
             </span>
           </h2>
           
-          {/* About Content with Photo */}
           <div className="grid lg:grid-cols-3 gap-8 items-center max-w-4xl mx-auto">
-            {/* Photo Section */}
             <div className="lg:col-span-1 flex justify-center lg:justify-start animate-fade-in-left">
               <div className="relative w-48 h-48 lg:w-56 lg:h-56 hover:scale-105 transition-transform duration-300">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-accent/30 rounded-2xl blur-2xl" />
@@ -73,7 +71,6 @@ const About = () => {
               </div>
             </div>
 
-            {/* Text Section */}
             <div className="lg:col-span-2 text-center lg:text-left animate-fade-in-right">
               <p className="text-muted-foreground text-lg leading-relaxed">
                 Sou desenvolvedor front-end de Carlos Barbosa, especializado em criar interfaces modernas, responsivas e de fácil usabilidade. Tenho 18 anos e já possuo experiência com HTML, CSS e JavaScript, sempre buscando unir design e funcionalidade. Apaixonado por tecnologia, estou em constante aprendizado e atualmente focado em adquirir conhecimentos em TypeScript e React. Estudo no IFRS Campus Bento, no curso técnico de Informática.
@@ -216,38 +213,30 @@ const About = () => {
                     </div>
                   </div>
                   
-                  {/* Certificate Image for Udemy course */}
                   {index === 0 && (
                     <div className="lg:w-48 w-full animate-in fade-in slide-in-from-right duration-700 delay-300 certificate-container">
                       <div className="relative group cursor-pointer certificate-glow">
-                        {/* Animated background glow */}
                         <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-lg blur-sm group-hover:blur-md transition-all duration-500 animate-pulse" />
                         
-                        {/* Certificate image with multiple animations */}
                         <img
                           src={udemyCertificate}
                           alt="Certificado Udemy - Desenvolvimento Web Completo"
                           className="relative w-full h-auto rounded-lg border-2 border-accent/30 shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-1 group-hover:border-accent/60"
                         />
                         
-                        {/* Hover overlay with animated shimmer effect */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-all duration-500" />
                         
-                        {/* Shimmer effect on hover */}
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-lg certificate-shimmer" />
                         
-                        {/* Floating particles effect with custom animation */}
                         <div className="absolute top-2 right-2 w-2 h-2 bg-accent/60 rounded-full particle-float" />
                         <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-primary/60 rounded-full particle-float" style={{ animationDelay: '1s' }} />
                         <div className="absolute top-1/2 left-2 w-1 h-1 bg-accent/40 rounded-full particle-float" style={{ animationDelay: '2s' }} />
                       </div>
                       
-                      {/* Animated text */}
                       <p className="text-xs text-muted-foreground text-center mt-2 group-hover:text-accent transition-colors duration-300 animate-in fade-in slide-in-from-bottom duration-500 delay-500">
                         Certificado de Conclusão
                       </p>
                       
-                      {/* Achievement badge */}
                       <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-accent to-primary rounded-full flex items-center justify-center animate-pulse">
                         <Award className="w-3 h-3 text-white" />
                       </div>

@@ -12,7 +12,6 @@ import eccomerceImg from "@/assets/projects/eccomerce.png";
 import dashboardImg from "@/assets/projects/dashboard.png";
 
 const Portfolio = () => {
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -192,7 +191,6 @@ const Portfolio = () => {
                     transition={{ duration: 0.3 }}
                   />
                   
-                  {/* Floating particles on hover */}
                   <motion.div 
                     className="absolute top-2 right-2 w-2 h-2 bg-accent/60 rounded-full"
                     initial={{ opacity: 0, scale: 0 }}
