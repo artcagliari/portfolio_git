@@ -62,8 +62,8 @@ const CodeWindow = () => {
 
   const codeData = [
     "let developer = {",
-    "ㅤㅤname: 'Artur Cagliari',",
-    "ㅤㅤskills: ['CSS', 'JS']",
+    "    name: 'Artur Cagliari',",
+    "    skills: ['CSS', 'JS', 'React', 'TypeScript']",
     "};"
   ];
 

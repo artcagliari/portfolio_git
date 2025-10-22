@@ -7,7 +7,9 @@ import academiaImg from "@/assets/projects/academia.png";
 import dinamaraImg from "@/assets/projects/dinamara.png";
 import napneImg from "@/assets/projects/napne.png";
 import advteixeiraImg from "@/assets/projects/advteixeira.png";
-
+import scoutImg from "@/assets/projects/scout.png";
+import eccomerceImg from "@/assets/projects/eccomerce.png";
+import dashboardImg from "@/assets/projects/dashboard.png";
 
 const Portfolio = () => {
   // Animation variants
@@ -55,16 +57,16 @@ const Portfolio = () => {
       description: "Design de cafeteria moderno com experiência de usuário elegante e aconchegante",
       image: cafeteriaImg,
       tags: ["HTML", "CSS", "JavaScript"],
-      githubUrl: "https://github.com/artcagliari/Landing-Page-Cafeteria",
-      showDemo: false,
+      demoUrl: "https://artcagliari.github.io/Landing-Page-Cafeteria/",
+      showDemo: true,
     },
     {
       title: "Landing Page Academia",
       description: "Design de academia moderno com layout responsivo e sistema de matrículas",
       image: academiaImg,
       tags: ["HTML", "CSS", "JavaScript"],
-      githubUrl: "https://github.com/artcagliari/Landing-Page-Academia",
-      showDemo: false,
+      demoUrl: "https://artcagliari.github.io/Landing-Page-Academia/",
+      showDemo: true,
     },
     {
       title: "Portfolio Dinamara Lusa",
@@ -79,17 +81,41 @@ const Portfolio = () => {
       description: "Sistema escolar para inclusão e gerenciamento de PEIs (Planos Educacionais Individualizados)",
       image: napneImg,
       tags: ["HTML", "CSS", "JavaScript"],
-      githubUrl: "https://github.com/artcagliari/Prot-tito-front-end-de-projeto-integrado",
-      showDemo: false,
+      demoUrl: "https://artcagliari.github.io/Prot-tito-front-end-de-projeto-integrado/",
+      showDemo: true,
     },
     {
-      title: "Protótipo Advogado Ronaldo Teixeira",
-      description: "Protótipo de portfolio para divulgação e informações comerciais de escritório de advocacia",
+      title: "Portfolio Adv Texeira",
+      description: "Prototipo portfolio para escritório de advocacia",
       image: advteixeiraImg,
       tags: ["HTML", "CSS", "JavaScript"],
       demoUrl: "https://arttest19.github.io/",
       showDemo: true,
     },
+      {
+        title: "Projeto Scout de volei",
+        description: "Projeto de site para o Scout de volei",
+        image: scoutImg,
+        tags: ["HTML", "CSS", "JavaScript"],
+        demoUrl: "https://artcagliari.github.io/projeto-scout/",
+        showDemo: true,
+      },
+      {
+        title: "Eccomerce",
+        description: "Projeto de site para eccomerce",
+        image: eccomerceImg,
+        tags: ["Typescript", "React", "TailwindCSS"],
+        demoUrl: "https://ecommerce-ts-prototipe.vercel.app",
+        showDemo: true,
+      },
+      {
+        title: "Dashboard",
+        description: "Projeto de dashboard para gerenciamento de dados",
+        image: dashboardImg,
+        tags: ["Typescript", "React", "TailwindCSS"],
+        demoUrl: "https://dashboard-finan-as.vercel.app",
+        showDemo: true,
+      },
   ];
 
   return (
@@ -225,25 +251,33 @@ const Portfolio = () => {
                     ))}
                   </motion.div>
 
-                  <div className="flex gap-3 pt-2">
+                  <div className="flex justify-left pt-2">
                     {project.showDemo ? (
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-primary/30 hover:bg-primary/10 hover:scale-105 transition-all duration-200"
-                        onClick={() => window.open(project.demoUrl, "_blank")}
+                        className="border-primary/30 hover:bg-primary/10 hover:scale-102 transition-all duration-200 text-xs py-1.5 px-4 min-h-[28px] w-auto"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          window.open(project.demoUrl, "_blank");
+                        }}
                       >
-                        <ExternalLink className="w-4 h-4 mr-2" />
+                        <ExternalLink className="w-3 h-3 mr-1.5" />
                         Demo
                       </Button>
                     ) : (
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-primary/30 hover:bg-primary/10 hover:scale-105 transition-all duration-200"
-                        onClick={() => window.open(project.githubUrl, "_blank")}
+                        className="border-primary/30 hover:bg-primary/10 hover:scale-102 transition-all duration-200 text-xs py-1.5 px-4 min-h-[28px] w-auto"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          window.open(project.demoUrl, "_blank");
+                        }}
                       >
-                        <Github className="w-4 h-4 mr-2" />
+                        <Github className="w-3 h-3 mr-1.5" />
                         Code
                       </Button>
                     )}
