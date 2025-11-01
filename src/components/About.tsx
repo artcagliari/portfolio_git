@@ -73,7 +73,7 @@ const About = () => {
 
             <div className="lg:col-span-2 text-center lg:text-left animate-fade-in-right">
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Sou desenvolvedor front-end de Carlos Barbosa, especializado em criar interfaces modernas, responsivas e de fácil usabilidade. Tenho 18 anos e já possuo experiência com HTML, CSS e JavaScript, sempre buscando unir design e funcionalidade. Apaixonado por tecnologia, estou em constante aprendizado e atualmente focado em adquirir conhecimentos em TypeScript e React. Estudo no IFRS Campus Bento, no curso técnico de Informática.
+                Sou desenvolvedor front-end de Carlos Barbosa, especializado em criar interfaces modernas, responsivas e de fácil usabilidade. Tenho 18 anos e estou sempre buscando unir design e funcionalidade. Apaixonado por tecnologia, estudo por conta própria TypeScript, React e Node.js, enquanto pelo IFRS Campus Bento aprendi HTML, CSS, JavaScript, PHP, MySQL e outras tecnologias no curso técnico de Informática.
               </p>
             </div>
           </div>
@@ -135,6 +135,12 @@ const About = () => {
                   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" title="tailwindcss"/>
                 </div>
                 <span>Tailwind CSS</span>
+              </div>
+              <div className="tech-icon">
+                <div className="icon-container">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" title="PHP"/>
+                </div>
+                <span>PHP</span>
               </div>
               <div className="tech-icon">
                 <div className="icon-container">
