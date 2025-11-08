@@ -10,6 +10,7 @@ import advteixeiraImg from "@/assets/projects/advteixeira.png";
 import scoutImg from "@/assets/projects/scout.png";
 import eccomerceImg from "@/assets/projects/eccomerce.png";
 import dashboardImg from "@/assets/projects/dashboard.png";
+import globalImg from "@/assets/projects/globalchanges.png";
 
 const Portfolio = () => {
   const containerVariants = {
@@ -113,6 +114,14 @@ const Portfolio = () => {
         image: dashboardImg,
         tags: ["Typescript", "React", "TailwindCSS"],
         demoUrl: "https://dashboard-finan-as.vercel.app",
+        showDemo: true,
+      },
+      {
+        title: "Global Changes",
+        description: "Projeto de site para mostra cientifica referenciando a ods 13 da onu",
+        image: globalImg,
+        tags: ["Typescript", "React", "Node.js"],
+        demoUrl: "https://global-changes.vercel.app/login",
         showDemo: true,
       },
   ];
