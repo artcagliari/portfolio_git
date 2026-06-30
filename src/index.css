@@ -63,13 +63,75 @@ All colors MUST be HSL.
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer components {
+  .glass-card {
+    @apply bg-card/50 backdrop-blur border border-primary/20 hover:border-primary/40 transition-all duration-500;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  .section-glow {
+    position: relative;
+  }
+
+  .section-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, hsl(var(--glow-primary) / 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, hsl(var(--glow-accent) / 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .btn-gradient-animated {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)));
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:bg-primary focus:text-primary-foreground;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+.orb-animate {
+  animation: orb-float 20s ease-in-out infinite;
+}
+
+.orb-animate-delayed {
+  animation: orb-float 25s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .text-shimmer,
+  .orb-animate,
+  .orb-animate-delayed,
+  .certificate-container,
+  .certificate-shimmer,
+  .certificate-glow,
+  .particle-float,
+  .btn-gradient-animated {
+    animation: none !important;
   }
 }
 

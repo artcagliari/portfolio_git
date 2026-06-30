@@ -2,15 +2,12 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
-import cafeteriaImg from "@/assets/projects/cafeteria.png";
-import academiaImg from "@/assets/projects/academia.png";
 import dinamaraImg from "@/assets/projects/dinamara.png";
-import napneImg from "@/assets/projects/napne.png";
 import advteixeiraImg from "@/assets/projects/advteixeira.png";
-import scoutImg from "@/assets/projects/scout.png";
-import eccomerceImg from "@/assets/projects/eccomerce.png";
-import dashboardImg from "@/assets/projects/dashboard.png";
-import globalImg from "@/assets/projects/globalchanges.png";
+import solidchoiceImg from "@/assets/projects/solidchoice.png";
+import brokerManagerImg from "@/assets/projects/managerbrooker.png";
+import brokerManagerLandingImg from "@/assets/projects/landingpageparasaas.png";
+import flowcrmImg from "@/assets/projects/flowcrm.png";
 
 const Portfolio = () => {
   const containerVariants = {
@@ -53,19 +50,11 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "Landing Page Cafeteria",
-      description: "Design de cafeteria moderno com experiência de usuário elegante e aconchegante",
-      image: cafeteriaImg,
+      title: "Portfolio Adv Texeira",
+      description: "Prototipo portfolio para escritório de advocacia",
+      image: advteixeiraImg,
       tags: ["HTML", "CSS", "JavaScript"],
-      demoUrl: "https://artcagliari.github.io/Landing-Page-Cafeteria/",
-      showDemo: true,
-    },
-    {
-      title: "Landing Page Academia",
-      description: "Design de academia moderno com layout responsivo e sistema de matrículas",
-      image: academiaImg,
-      tags: ["HTML", "CSS", "JavaScript"],
-      demoUrl: "https://artcagliari.github.io/Landing-Page-Academia/",
+      demoUrl: "https://arttest19.github.io/",
       showDemo: true,
     },
     {
@@ -77,57 +66,42 @@ const Portfolio = () => {
       showDemo: true,
     },
     {
-      title: "Sistema NAPNE",
-      description: "Sistema escolar para inclusão e gerenciamento de PEIs (Planos Educacionais Individualizados)",
-      image: napneImg,
-      tags: ["HTML", "CSS", "JavaScript"],
-      demoUrl: "https://artcagliari.github.io/Prot-tito-front-end-de-projeto-integrado/",
+      title: "BrokerManager Landing",
+      description: "Landing page de conversão para CRM de corretores e imobiliárias",
+      image: brokerManagerLandingImg,
+      tags: ["Typescript", "React", "TailwindCSS"],
+      demoUrl: "https://manager-broker.vercel.app",
       showDemo: true,
     },
     {
-      title: "Portfolio Adv Texeira",
-      description: "Prototipo portfolio para escritório de advocacia",
-      image: advteixeiraImg,
-      tags: ["HTML", "CSS", "JavaScript"],
-      demoUrl: "https://arttest19.github.io/",
+      title: "BrokerManager",
+      description: "SaaS de gestão imobiliária com agenda, leads, funil comercial e follow-up",
+      image: brokerManagerImg,
+      tags: ["Typescript", "React", "TailwindCSS"],
+      demoUrl: "https://brookermanager-client.vercel.app",
       showDemo: true,
     },
-      {
-        title: "Projeto Scout de volei",
-        description: "Projeto de site para o Scout de volei",
-        image: scoutImg,
-        tags: ["HTML", "CSS", "JavaScript"],
-        demoUrl: "https://artcagliari.github.io/projeto-scout/",
-        showDemo: true,
-      },
-      {
-        title: "Eccomerce",
-        description: "Projeto de site para eccomerce",
-        image: eccomerceImg,
-        tags: ["Typescript", "React", "TailwindCSS"],
-        demoUrl: "https://ecommerce-ts-prototipe.vercel.app",
-        showDemo: true,
-      },
-      {
-        title: "Dashboard",
-        description: "Projeto de dashboard para gerenciamento de dados",
-        image: dashboardImg,
-        tags: ["Typescript", "React", "TailwindCSS"],
-        demoUrl: "https://dashboard-finan-as.vercel.app",
-        showDemo: true,
-      },
-      {
-        title: "Global Changes",
-        description: "Projeto de site para mostra cientifica referenciando a ods 13 da onu",
-        image: globalImg,
-        tags: ["Typescript", "React", "Node.js"],
-        demoUrl: "https://global-changes.vercel.app/login",
-        showDemo: true,
-      },
+    {
+      title: "FlowCRM",
+      description: "CRM comercial full-stack com pipeline Kanban, dashboard, IA e inbox WhatsApp",
+      image: flowcrmImg,
+      tags: ["Typescript", "React", "Laravel"],
+      demoUrl: "https://github.com/artcagliari/flowcrm",
+      showDemo: false,
+    },
+    {
+      title: "Solid Choice",
+      description: "E-commerce premium com landing cinematográfica e compra assistida internacional",
+      image: solidchoiceImg,
+      tags: ["Typescript", "React", "TailwindCSS"],
+      demoUrl: "https://solidchoice.com.br",
+      showDemo: true,
+    },
   ];
+  
 
   return (
-    <section id="portfolio" className="py-20 relative">
+    <section id="portfolio" className="py-20 relative section-glow">
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center mb-16"
@@ -141,16 +115,7 @@ const Portfolio = () => {
             variants={titleVariants}
             whileHover={{ scale: 1.05 }}
           >
-            Meu <motion.span 
-              className="text-primary"
-              style={{
-                background: "linear-gradient(90deg, #e2e8f0, #64b5f6, #e2e8f0)",
-                backgroundSize: "200% auto",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                animation: "text-shimmer 3s linear infinite"
-              }}
-            >
+            Meu <motion.span className="text-shimmer">
               Portfólio
             </motion.span>
           </motion.h2>
@@ -186,6 +151,7 @@ const Portfolio = () => {
                   <motion.img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                     whileHover={{ 
                       scale: 1.1, 
@@ -247,7 +213,7 @@ const Portfolio = () => {
                         variants={itemVariants}
                         whileHover={{ 
                           scale: 1.1, 
-                          rotate: Math.random() * 10 - 5,
+                          rotate: ((tagIndex % 5) - 2) * 2,
                           boxShadow: "0 0 15px rgba(100, 181, 246, 0.3)"
                         }}
                         whileTap={{ scale: 0.95 }}

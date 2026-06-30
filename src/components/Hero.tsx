@@ -112,7 +112,7 @@ const Hero = () => {
               >
                 <Code className="w-4 h-4 text-primary" />
               </motion.div>
-              <span className="text-sm font-medium">Ready to Innovate</span>
+              <span className="text-sm font-medium">Pronto para inovar</span>
             </motion.div>
 
             <div>
@@ -126,16 +126,9 @@ const Hero = () => {
                 </motion.span>
                 <br />
                 <motion.span 
-                  className="text-primary drop-shadow-glow-primary inline-block"
+                  className="text-shimmer drop-shadow-glow-primary inline-block"
                   variants={titleVariants}
                   whileHover={{ scale: 1.05 }}
-                  style={{
-                    background: "linear-gradient(90deg, #e2e8f0, #64b5f6, #e2e8f0)",
-                    backgroundSize: "200% auto",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    animation: "text-shimmer 3s linear infinite"
-                  }}
                 >
                   Developer
                 </motion.span>
@@ -169,7 +162,7 @@ const Hero = () => {
                   variants={itemVariants}
                   whileHover={{ 
                     scale: 1.1, 
-                    rotate: Math.random() * 10 - 5,
+                    rotate: ((index % 5) - 2) * 2,
                     boxShadow: "0 0 20px rgba(100, 181, 246, 0.4)"
                   }}
                   whileTap={{ scale: 0.95 }}

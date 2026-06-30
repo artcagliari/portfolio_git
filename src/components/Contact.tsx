@@ -90,7 +90,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative">
+    <section id="contact" className="py-20 relative section-glow">
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center mb-16"
@@ -130,7 +130,7 @@ const Contact = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Card
-                  className="group p-6 bg-card/50 backdrop-blur border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-glow-primary cursor-pointer"
+                  className="group relative overflow-hidden p-6 bg-card/50 backdrop-blur border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-glow-primary cursor-pointer"
                   onClick={() => window.open(method.link, "_blank")}
                 >
                 <div className="flex flex-col items-center text-center space-y-4">
