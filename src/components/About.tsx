@@ -124,9 +124,9 @@ const About = () => {
 
             <motion.div className="lg:col-span-3 space-y-6" variants={itemVariants}>
               <p className="text-muted-foreground text-lg leading-relaxed text-center lg:text-left">
-                Sou desenvolvedor front-end de Carlos Barbosa, especializado em criar interfaces
-                modernas, responsivas e de fácil usabilidade. Tenho 18 anos e estou sempre buscando
-                unir design e funcionalidade. Realizei estágio na{" "}
+                Sou desenvolvedor full stack de Carlos Barbosa, especializado em criar aplicações
+                web completas, modernas e de fácil usabilidade — do frontend ao backend. Tenho 18
+                anos e estou sempre buscando unir design e funcionalidade. Realizei estágio na{" "}
                 <span className="text-primary font-medium">Blasternet Telecom</span>, onde desenvolvi
                 um chatbot com IA para WhatsApp em stack full-stack com React e Laravel. Apaixonado
                 por tecnologia, estudo por conta própria TypeScript, React e Node.js, enquanto pelo

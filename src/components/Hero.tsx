@@ -122,7 +122,7 @@ const Hero = () => {
                   variants={titleVariants}
                   whileHover={{ scale: 1.05 }}
                 >
-                  Front-end
+                  Full Stack
                 </motion.span>
                 <br />
                 <motion.span 
