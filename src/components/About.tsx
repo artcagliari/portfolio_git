@@ -29,11 +29,11 @@ const About = () => {
         "Desenvolvimento full-stack de chatbot com IA para WhatsApp, utilizando React no frontend e Laravel no backend.",
     },
     {
-      title: "Frontend Developer",
-      company: "Freelancer",
-      period: "2024 - Presente",
+      title: "Assistente Administrativo",
+      company: "Escritório Dinamara Lusa",
+      period: "01/2023 - 09/2023",
       description:
-        "Criação de websites responsivos, landing pages e sistemas web modernos para diversos clientes",
+        "Suporte administrativo, organização de documentos e rotinas do escritório, atendimento e apoio operacional.",
     },
     {
       title: "Estudante de Informática",
