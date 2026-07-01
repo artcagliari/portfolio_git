@@ -24,7 +24,7 @@ const About = () => {
     {
       title: "Estagiário de Desenvolvimento",
       company: "Blasternet Telecom",
-      period: "2025",
+      period: "03/2026 - 06/2026",
       description:
         "Desenvolvimento full-stack de chatbot com IA para WhatsApp, utilizando React no frontend e Laravel no backend.",
     },
