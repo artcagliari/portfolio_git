@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
+import Stacks from "@/components/Stacks";
 import About from "@/components/About";
 import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
@@ -15,6 +16,7 @@ const Index = () => {
       <main className="relative z-10">
         <Hero />
         <Marquee />
+        <Stacks />
         <About />
         <Portfolio />
         <Contact />

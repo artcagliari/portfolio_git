@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
-import { Code2, Briefcase, GraduationCap, Award, MapPin } from "lucide-react";
+import { Briefcase, GraduationCap, Award, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import profileImage from "@/assets/profile.jpg";
 import udemyCertificate from "@/assets/projects/udemy.jpg";
@@ -60,20 +60,6 @@ const About = () => {
       description:
         "Curso técnico com aprofundamento em desenvolvimento web, programação e aplicação prática de conceitos.",
     },
-  ];
-
-  const skills = [
-    { name: "HTML5", icon: "html5/html5-original" },
-    { name: "CSS3", icon: "css3/css3-original" },
-    { name: "JavaScript", icon: "javascript/javascript-original" },
-    { name: "Typescript", icon: "typescript/typescript-original" },
-    { name: "React", icon: "react/react-original" },
-    { name: "Tailwind CSS", icon: "tailwindcss/tailwindcss-original" },
-    { name: "Bootstrap", icon: "bootstrap/bootstrap-original" },
-    { name: "PHP", icon: "php/php-original" },
-    { name: "Laravel", icon: "laravel/laravel-original" },
-    { name: "MySQL", icon: "mysql/mysql-original" },
-    { name: "NodeJS", icon: "nodejs/nodejs-original" },
   ];
 
   return (
@@ -161,15 +147,8 @@ const About = () => {
           </div>
         </motion.div>
 
-        <Tabs defaultValue="skills" className="w-full max-w-4xl mx-auto">
-          <TabsList className="grid w-full grid-cols-3 mb-10">
-            <TabsTrigger
-              value="skills"
-              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
-            >
-              <Code2 className="w-4 h-4 mr-2" />
-              Habilidades
-            </TabsTrigger>
+        <Tabs defaultValue="experience" className="w-full max-w-4xl mx-auto">
+          <TabsList className="grid w-full grid-cols-2 mb-10">
             <TabsTrigger
               value="experience"
               className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
@@ -185,37 +164,6 @@ const About = () => {
               Educação
             </TabsTrigger>
           </TabsList>
-
-          <TabsContent value="skills">
-            <motion.div
-              className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={containerVariants}
-            >
-              {skills.map((skill) => (
-                <motion.div
-                  key={skill.name}
-                  variants={itemVariants}
-                  whileHover={{ y: -6, scale: 1.05 }}
-                  className="glass-card rounded-xl p-4 flex flex-col items-center gap-3 group"
-                >
-                  <div className="w-12 h-12 flex items-center justify-center group-hover:drop-shadow-glow-primary transition-all">
-                    <img
-                      src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.icon}.svg`}
-                      alt={skill.name}
-                      loading="lazy"
-                      className="max-w-full max-h-full"
-                    />
-                  </div>
-                  <span className="text-xs text-muted-foreground text-center group-hover:text-primary transition-colors">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </TabsContent>
 
           <TabsContent value="experience">
             <motion.div
