@@ -109,6 +109,39 @@ All colors MUST be HSL.
   .skip-link {
     @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:bg-primary focus:text-primary-foreground;
   }
+
+  .text-mega {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+    font-size: clamp(3.5rem, 16vw, 15rem);
+  }
+
+  .text-outline {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.5px hsl(var(--primary));
+    color: transparent;
+  }
+
+  .marquee {
+    @apply flex overflow-hidden select-none;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .marquee__track {
+    @apply flex shrink-0 items-center gap-8 pr-8;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
 }
 
 @keyframes gradient-shift {
