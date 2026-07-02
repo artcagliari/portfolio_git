@@ -120,8 +120,50 @@ All colors MUST be HSL.
 
   .text-outline {
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 1.5px hsl(var(--primary));
+    -webkit-text-stroke: 1.5px hsl(var(--primary) / 0.55);
     color: transparent;
+  }
+
+  .hero-reveal {
+    position: relative;
+    cursor: default;
+  }
+
+  .hero-reveal__top {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(
+      circle 160px at var(--reveal-x, -1000px) var(--reveal-y, -1000px),
+      #000 0%,
+      #000 35%,
+      transparent 72%
+    );
+    mask-image: radial-gradient(
+      circle 160px at var(--reveal-x, -1000px) var(--reveal-y, -1000px),
+      #000 0%,
+      #000 35%,
+      transparent 72%
+    );
+  }
+
+  .hero-spotlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    background: radial-gradient(
+      500px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      hsl(var(--glow-primary) / 0.16),
+      hsl(var(--glow-accent) / 0.08) 40%,
+      transparent 70%
+    );
+  }
+
+  .hero-spotlight.is-active {
+    opacity: 1;
   }
 
   .marquee {

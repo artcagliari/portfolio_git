@@ -1,31 +1,70 @@
+import { useRef } from "react";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import profileImage from "@/assets/profile.jpg";
 
 const scrollToSection = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
-const wordReveal = {
-  hidden: { y: "110%" },
-  visible: (i: number) => ({
-    y: "0%",
-    transition: { duration: 0.9, delay: 0.15 * i, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
+const NameLines = ({ className = "" }: { className?: string }) => (
+  <span className={className} aria-hidden="true">
+    <span className="block">Artur</span>
+    <span className="block italic">Cagliari</span>
+  </span>
+);
 
 const Hero = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const revealRef = useRef<HTMLDivElement>(null);
+  const topRef = useRef<HTMLSpanElement>(null);
+  const spotlightRef = useRef<HTMLDivElement>(null);
+  const frame = useRef<number>();
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+    if (frame.current) cancelAnimationFrame(frame.current);
+
+    frame.current = requestAnimationFrame(() => {
+      if (spotlightRef.current && sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        spotlightRef.current.style.setProperty("--spot-x", `${clientX - rect.left}px`);
+        spotlightRef.current.style.setProperty("--spot-y", `${clientY - rect.top}px`);
+        spotlightRef.current.classList.add("is-active");
+      }
+      if (topRef.current && revealRef.current) {
+        const rect = revealRef.current.getBoundingClientRect();
+        topRef.current.style.setProperty("--reveal-x", `${clientX - rect.left}px`);
+        topRef.current.style.setProperty("--reveal-y", `${clientY - rect.top}px`);
+      }
+    });
+  };
+
+  const handleMouseLeave = () => {
+    spotlightRef.current?.classList.remove("is-active");
+    if (topRef.current) {
+      topRef.current.style.setProperty("--reveal-x", "-1000px");
+      topRef.current.style.setProperty("--reveal-y", "-1000px");
+    }
+  };
+
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-between pt-28 pb-10 relative overflow-hidden">
+    <section
+      id="home"
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="min-h-screen flex flex-col justify-between pt-28 pb-10 relative overflow-hidden"
+    >
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.12] pointer-events-none" />
+      <div ref={spotlightRef} className="hero-spotlight" />
 
       <div className="container mx-auto px-4 relative z-10 w-full">
         <motion.div
-          className="flex items-center justify-between text-xs font-mono-ui uppercase tracking-[0.2em] text-muted-foreground mb-10"
+          className="flex items-center justify-between text-xs font-mono-ui uppercase tracking-[0.2em] text-muted-foreground"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.4 }}
         >
           <span className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
@@ -39,50 +78,35 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10 w-full">
-        <div className="text-mega">
-          <div className="overflow-hidden">
-            <motion.span
-              className="block text-foreground"
-              variants={wordReveal}
-              custom={0}
-              initial="hidden"
-              animate="visible"
-            >
-              Artur
-            </motion.span>
-          </div>
+        <motion.div
+          ref={revealRef}
+          className="hero-reveal text-mega"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <NameLines className="text-outline" />
+          <span ref={topRef} className="hero-reveal__top text-shimmer">
+            <NameLines />
+          </span>
+        </motion.div>
 
-          <div className="flex items-center gap-4 md:gap-8">
-            <motion.div
-              className="hidden md:block shrink-0 h-[0.75em] aspect-[4/5] rounded-2xl overflow-hidden border border-border"
-              initial={{ opacity: 0, scale: 0.8, rotate: -4 }}
-              animate={{ opacity: 1, scale: 1, rotate: -2 }}
-              transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <img src={profileImage} alt="Artur Cagliari" className="w-full h-full object-cover" />
-            </motion.div>
-
-            <div className="overflow-hidden">
-              <motion.span
-                className="block text-shimmer italic"
-                variants={wordReveal}
-                custom={1}
-                initial="hidden"
-                animate="visible"
-              >
-                Cagliari
-              </motion.span>
-            </div>
-          </div>
-        </div>
+        <motion.p
+          className="hidden md:block mt-6 text-sm font-mono-ui uppercase tracking-[0.2em] text-muted-foreground"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+        >
+          Passe o mouse sobre o nome
+        </motion.p>
       </div>
 
       <div className="container mx-auto px-4 relative z-10 w-full">
         <motion.div
-          className="grid md:grid-cols-12 gap-8 items-end mt-12"
+          className="grid md:grid-cols-12 gap-8 items-end"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.7 }}
+          transition={{ delay: 0.9, duration: 0.7 }}
         >
           <div className="md:col-span-5">
             <p className="editorial-eyebrow mb-3">
@@ -120,7 +144,7 @@ const Hero = () => {
           className="flex items-center gap-2 mt-12 text-xs font-mono-ui uppercase tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.3 }}
+          transition={{ delay: 1.2 }}
         >
           <ArrowDown className="w-4 h-4 animate-bounce" />
           Role para explorar
