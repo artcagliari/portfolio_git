@@ -1,6 +1,4 @@
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import dinamaraImg from "@/assets/projects/dinamara.png";
 import advteixeiraImg from "@/assets/projects/advteixeira.png";
@@ -8,256 +6,169 @@ import solidchoiceImg from "@/assets/projects/solidchoice.png";
 import brokerManagerImg from "@/assets/projects/managerbrooker.png";
 import brokerManagerLandingImg from "@/assets/projects/landingpageparasaas.png";
 import flowcrmImg from "@/assets/projects/flowcrm.png";
+import { containerVariants, itemVariants, titleVariants, defaultViewport } from "@/lib/motion";
+
+const projects = [
+  {
+    title: "FlowCRM",
+    category: "CRM Full Stack",
+    description:
+      "CRM comercial com pipeline Kanban, dashboard analítico, assistente de IA e inbox WhatsApp. Backend em Laravel 12 e frontend em React 19.",
+    image: flowcrmImg,
+    tags: ["React", "TypeScript", "Laravel"],
+    url: "https://github.com/artcagliari/flowcrm",
+    type: "code" as const,
+  },
+  {
+    title: "Solid Choice",
+    category: "E-commerce Premium",
+    description:
+      "Loja virtual em produção com vitrine cinematográfica, catálogo, área logada e integração WhatsApp. Operação com Supabase.",
+    image: solidchoiceImg,
+    tags: ["React", "TypeScript", "TailwindCSS"],
+    url: "https://solidchoice.com.br",
+    type: "demo" as const,
+  },
+  {
+    title: "BrokerManager",
+    category: "SaaS Imobiliário",
+    description:
+      "Aplicação SaaS para corretores e imobiliárias: agenda, leads, funil de atendimento, pós-visita, comissões e follow-up.",
+    image: brokerManagerImg,
+    tags: ["React", "TypeScript", "TailwindCSS"],
+    url: "https://brookermanager-client.vercel.app",
+    type: "demo" as const,
+  },
+  {
+    title: "BrokerManager Landing",
+    category: "Landing Page",
+    description:
+      "Página de conversão para o CRM BrokerManager, com apresentação do produto, fluxo comercial e CTA de demonstração.",
+    image: brokerManagerLandingImg,
+    tags: ["React", "TypeScript", "TailwindCSS"],
+    url: "https://manager-broker.vercel.app",
+    type: "demo" as const,
+  },
+  {
+    title: "Dinamara Lusa",
+    category: "Site Institucional",
+    description:
+      "Portfólio profissional para escritório de advocacia especializado em direito tributário, com design moderno e responsivo.",
+    image: dinamaraImg,
+    tags: ["HTML", "CSS", "JavaScript"],
+    url: "https://dinamaralusaadv.com/",
+    type: "demo" as const,
+  },
+  {
+    title: "Adv Teixeira",
+    category: "Site Institucional",
+    description:
+      "Protótipo de portfólio para escritório de advocacia, com design profissional e layout responsivo.",
+    image: advteixeiraImg,
+    tags: ["HTML", "CSS", "JavaScript"],
+    url: "https://arttest19.github.io/",
+    type: "demo" as const,
+  },
+];
 
 const Portfolio = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0, scale: 0.9 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 12
-      }
-    }
-  };
-
-  const titleVariants = {
-    hidden: { y: -50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 15
-      }
-    }
-  };
-
-  const projects = [
-    {
-      title: "Portfolio Adv Texeira",
-      description: "Prototipo portfolio para escritório de advocacia",
-      image: advteixeiraImg,
-      tags: ["HTML", "CSS", "JavaScript"],
-      demoUrl: "https://arttest19.github.io/",
-      showDemo: true,
-    },
-    {
-      title: "Portfolio Dinamara Lusa",
-      description: "Design de portfolio moderno para escritório de advocacia especializado em direito tributário",
-      image: dinamaraImg,
-      tags: ["HTML", "CSS", "JavaScript"],
-      demoUrl: "https://dinamaralusaadv.com/",
-      showDemo: true,
-    },
-    {
-      title: "BrokerManager Landing",
-      description: "Landing page de conversão para CRM de corretores e imobiliárias",
-      image: brokerManagerLandingImg,
-      tags: ["Typescript", "React", "TailwindCSS"],
-      demoUrl: "https://manager-broker.vercel.app",
-      showDemo: true,
-    },
-    {
-      title: "BrokerManager",
-      description: "SaaS de gestão imobiliária com agenda, leads, funil comercial e follow-up",
-      image: brokerManagerImg,
-      tags: ["Typescript", "React", "TailwindCSS"],
-      demoUrl: "https://brookermanager-client.vercel.app",
-      showDemo: true,
-    },
-    {
-      title: "FlowCRM",
-      description: "CRM comercial full-stack com pipeline Kanban, dashboard, IA e inbox WhatsApp",
-      image: flowcrmImg,
-      tags: ["Typescript", "React", "Laravel"],
-      demoUrl: "https://github.com/artcagliari/flowcrm",
-      showDemo: false,
-    },
-    {
-      title: "Solid Choice",
-      description: "E-commerce premium com landing cinematográfica e compra assistida internacional",
-      image: solidchoiceImg,
-      tags: ["Typescript", "React", "TailwindCSS"],
-      demoUrl: "https://solidchoice.com.br",
-      showDemo: true,
-    },
-  ];
-  
-
   return (
-    <section id="portfolio" className="py-20 relative section-glow">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          className="text-center mb-16"
+    <section id="portfolio" className="py-24 relative section-glow">
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={defaultViewport}
           variants={containerVariants}
         >
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-4"
-            variants={titleVariants}
-            whileHover={{ scale: 1.05 }}
-          >
-            Meu <motion.span className="text-shimmer">
-              Portfólio
+          <div>
+            <motion.span variants={titleVariants} className="editorial-eyebrow mb-5">
+              <span className="w-8 h-px bg-primary" />
+              02 — Trabalhos selecionados
             </motion.span>
-          </motion.h2>
-          <motion.p 
-            className="text-muted-foreground text-lg max-w-2xl mx-auto"
+            <motion.h2
+              variants={titleVariants}
+              className="font-display font-semibold tracking-tight text-5xl md:text-6xl"
+            >
+              Meus <span className="text-shimmer italic">Projetos</span>
+            </motion.h2>
+          </div>
+          <motion.p
             variants={itemVariants}
-            whileHover={{ x: 10 }}
+            className="text-muted-foreground max-w-sm md:text-right"
           >
-            Aqui estão alguns dos meus projetos recentes mostrando minhas habilidades em desenvolvimento frontend
+            Uma curadoria dos meus principais trabalhos em produto digital, e-commerce e
+            aplicações web.
           </motion.p>
         </motion.div>
 
-        <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={containerVariants}
+          className="border-t border-border"
         >
           {projects.map((project, index) => (
-            <motion.div
-              key={index}
+            <motion.a
+              key={project.title}
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
               variants={itemVariants}
-              whileHover={{ 
-                scale: 1.05,
-                rotateY: 5,
-                transition: { type: "spring" as const, stiffness: 300, damping: 20 }
-              }}
-              whileTap={{ scale: 0.95 }}
+              className="group grid md:grid-cols-12 gap-6 md:gap-8 items-center py-8 border-b border-border relative"
             >
-              <Card className="group overflow-hidden bg-card/50 backdrop-blur border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-glow-primary h-full">
-                <div className="relative overflow-hidden aspect-video bg-secondary">
-                  <motion.img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover"
-                    whileHover={{ 
-                      scale: 1.1, 
-                      rotate: 2,
-                      transition: { duration: 0.3 }
-                    }}
-                  />
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-background to-transparent"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  
-                  <motion.div 
-                    className="absolute top-2 right-2 w-2 h-2 bg-accent/60 rounded-full"
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileHover={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      y: [0, -10, 0],
-                      transition: { duration: 0.6, repeat: Infinity }
-                    }}
-                  />
-                  <motion.div 
-                    className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-primary/60 rounded-full"
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileHover={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      y: [0, -10, 0],
-                      transition: { duration: 0.6, repeat: Infinity, delay: 0.3 }
-                    }}
-                  />
-                </div>
-                
-                <div className="p-6 space-y-4">
-                  <motion.h3 
-                    className="text-xl font-semibold group-hover:text-primary transition-colors duration-300"
-                    whileHover={{ x: 5 }}
-                  >
-                    {project.title}
-                  </motion.h3>
-                  <motion.p 
-                    className="text-muted-foreground text-sm"
-                    whileHover={{ x: 5 }}
-                  >
-                    {project.description}
-                  </motion.p>
-                  
-                  <motion.div 
-                    className="flex flex-wrap gap-2"
-                    variants={containerVariants}
-                  >
-                    {project.tags.map((tag, tagIndex) => (
-                      <motion.span
-                        key={tag}
-                        className="px-3 py-1 text-xs rounded-full bg-primary/10 border border-primary/30 text-primary"
-                        variants={itemVariants}
-                        whileHover={{ 
-                          scale: 1.1, 
-                          rotate: ((tagIndex % 5) - 2) * 2,
-                          boxShadow: "0 0 15px rgba(100, 181, 246, 0.3)"
-                        }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ type: "spring" as const, stiffness: 400, damping: 10 }}
-                      >
-                        {tag}
-                      </motion.span>
-                    ))}
-                  </motion.div>
+              <div className="hidden md:block md:col-span-1 font-display text-2xl text-primary/30 group-hover:text-primary transition-colors">
+                0{index + 1}
+              </div>
 
-                  <div className="flex justify-left pt-2">
-                    {project.showDemo ? (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="border-primary/30 hover:bg-primary/10 hover:scale-102 transition-all duration-200 text-xs py-1.5 px-4 min-h-[28px] w-auto"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          window.open(project.demoUrl, "_blank");
-                        }}
-                      >
-                        <ExternalLink className="w-3 h-3 mr-1.5" />
-                        Demo
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="border-primary/30 hover:bg-primary/10 hover:scale-102 transition-all duration-200 text-xs py-1.5 px-4 min-h-[28px] w-auto"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          window.open(project.demoUrl, "_blank");
-                        }}
-                      >
-                        <Github className="w-3 h-3 mr-1.5" />
-                        Code
-                      </Button>
-                    )}
-                  </div>
+              <div className="md:col-span-4 order-2 md:order-none overflow-hidden rounded-lg aspect-video bg-secondary">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                />
+              </div>
+
+              <div className="md:col-span-5">
+                <span className="text-xs font-mono-ui uppercase tracking-[0.2em] text-primary">
+                  {project.category}
+                </span>
+                <h3 className="font-display text-3xl md:text-4xl font-medium mt-2 mb-3 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 max-w-md">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[11px] font-mono-ui uppercase tracking-wide px-2.5 py-1 rounded-full border border-border text-muted-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-              </Card>
-            </motion.div>
+              </div>
+
+              <div className="md:col-span-2 flex md:justify-end items-center order-3">
+                <span className="inline-flex items-center gap-2 text-xs font-mono-ui uppercase tracking-[0.15em] text-muted-foreground group-hover:text-primary transition-colors">
+                  {project.type === "code" ? (
+                    <>
+                      <Github className="w-4 h-4" /> Código
+                    </>
+                  ) : (
+                    <>
+                      <ExternalLink className="w-4 h-4" /> Demo
+                    </>
+                  )}
+                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </span>
+              </div>
+            </motion.a>
           ))}
         </motion.div>
       </div>

@@ -37,7 +37,7 @@ const CodeWindow = () => {
         if (line) {
           const text = line.getAttribute('data-text') || '';
           line.textContent = '';
-          line.style.borderRight = '2px solid #64b5f6';
+          line.style.borderRight = '2px solid #f5b45a';
           
           let charIndex = 0;
           const typeChar = () => {

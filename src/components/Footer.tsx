@@ -34,14 +34,16 @@ const Footer = () => {
     >
       <div className="grid md:grid-cols-3 gap-8 mb-8">
         <div>
-          <h3 className="text-lg font-bold text-primary mb-3">Artur Cagliari</h3>
+          <h3 className="font-display text-xl font-semibold mb-3">
+            Artur<span className="text-primary">.</span>Cagliari
+          </h3>
           <p className="text-sm text-muted-foreground">
-            Frontend Developer criando experiências digitais modernas e funcionais.
+            Full Stack Developer criando experiências digitais modernas e funcionais.
           </p>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold mb-3">Navegação</h4>
+          <h4 className="text-xs font-mono-ui uppercase tracking-[0.2em] text-muted-foreground mb-3">Navegação</h4>
           <ul className="space-y-2">
             {navLinks.map((link) => (
               <li key={link.id}>
@@ -57,7 +59,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold mb-3">Redes Sociais</h4>
+          <h4 className="text-xs font-mono-ui uppercase tracking-[0.2em] text-muted-foreground mb-3">Redes Sociais</h4>
           <div className="flex gap-3">
             {socialLinks.map(({ icon: Icon, href, label }) => (
               <a
@@ -76,7 +78,7 @@ const Footer = () => {
       </div>
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-primary/10">
-        <p className="text-sm text-muted-foreground">© 2025 Artur Cagliari. Todos os direitos reservados.</p>
+        <p className="text-sm text-muted-foreground">© 2026 Artur Cagliari. Todos os direitos reservados.</p>
         <button
           onClick={scrollToTop}
           className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"

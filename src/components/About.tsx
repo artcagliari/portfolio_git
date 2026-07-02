@@ -1,9 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
-import { Code2, Briefcase, GraduationCap, Award, MapPin, Sparkles } from "lucide-react";
+import { Code2, Briefcase, GraduationCap, Award, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import profileImage from "@/assets/profile.jpg";
 import udemyCertificate from "@/assets/projects/udemy.jpg";
+import AnimatedCounter from "./AnimatedCounter";
 import {
   containerVariants,
   itemVariants,
@@ -14,10 +15,10 @@ import {
 
 const About = () => {
   const stats = [
-    { value: "18", label: "Anos" },
-    { value: "10+", label: "Projetos" },
-    { value: "10+", label: "Tecnologias" },
-    { value: "1", label: "Estágio" },
+    { value: 18, suffix: "", label: "Anos" },
+    { value: 10, suffix: "+", label: "Projetos" },
+    { value: 11, suffix: "", label: "Tecnologias" },
+    { value: 1, suffix: "", label: "Estágio" },
   ];
 
   const experiences = [
@@ -85,13 +86,13 @@ const About = () => {
           viewport={defaultViewport}
           variants={containerVariants}
         >
-          <motion.div className="flex flex-col items-center mb-12" variants={titleVariants}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/50 backdrop-blur-sm border border-primary/20 text-sm text-primary mb-4">
-              <Sparkles className="w-4 h-4" />
-              Quem sou eu
+          <motion.div className="flex flex-col items-center mb-14" variants={titleVariants}>
+            <span className="editorial-eyebrow mb-5">
+              <span className="w-8 h-px bg-primary" />
+              01 — Quem sou eu
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-center">
-              Sobre <span className="text-shimmer">Mim</span>
+            <h2 className="font-display font-semibold tracking-tight text-5xl md:text-6xl text-center">
+              Sobre <span className="text-shimmer italic">Mim</span>
             </h2>
           </motion.div>
 
@@ -142,11 +143,17 @@ const About = () => {
                   <motion.div
                     key={stat.label}
                     variants={itemVariants}
-                    whileHover={{ y: -4, scale: 1.03 }}
+                    whileHover={{ y: -4 }}
                     className="glass-card rounded-xl p-4 text-center"
                   >
-                    <div className="text-2xl lg:text-3xl font-bold text-shimmer">{stat.value}</div>
-                    <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+                    <AnimatedCounter
+                      value={stat.value}
+                      suffix={stat.suffix}
+                      className="font-display text-3xl lg:text-4xl font-semibold text-primary"
+                    />
+                    <div className="text-[11px] font-mono-ui uppercase tracking-[0.15em] text-muted-foreground mt-1">
+                      {stat.label}
+                    </div>
                   </motion.div>
                 ))}
               </motion.div>
