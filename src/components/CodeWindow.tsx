@@ -62,8 +62,9 @@ const CodeWindow = () => {
 
   const codeData = [
     "let developer = {",
-    " name: 'Artur Cagliari',",
-    "   skills: ['CSS', 'JS', 'React', 'TypeScript']",
+    "  name: 'Artur Cagliari',",
+    "  role: 'Full Stack Developer',",
+    "  skills: ['React', 'TypeScript', 'Node.js', 'Laravel']",
     "};"
   ];
 
@@ -84,7 +85,7 @@ const CodeWindow = () => {
               <span 
                 className="code-text"
                 data-text={line}
-                style={{marginLeft: [1,2].includes(index) ? '20px' : '0px' }}
+                style={{ marginLeft: index > 0 ? `${index * 12}px` : "0px" }}
                 ref={(el) => (codeLinesRef.current[index] = el)}
               >
                 {line}

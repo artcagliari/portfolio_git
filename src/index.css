@@ -231,8 +231,9 @@ All colors MUST be HSL.
 /* Code Window Styles */
 .code-window {
   position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 350px;
+  max-width: 420px;
   background: rgba(15, 23, 42, 0.95);
   border: 1px solid rgba(100, 181, 246, 0.3);
   border-radius: 12px;
