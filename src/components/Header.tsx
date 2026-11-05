@@ -1,134 +1,106 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { mobileMenuVariants, mobileMenuItemVariants } from "@/lib/motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ease } from "@/lib/motion";
 
 const navItems = [
-  { id: "home", label: "Início" },
-  { id: "about", label: "Sobre" },
-  { id: "portfolio", label: "Projetos" },
-  { id: "contact", label: "Contato" },
+  { href: "#portfolio", label: "Projetos" },
+  { href: "#about", label: "Sobre" },
+  { href: "#stacks", label: "Stacks" },
+  { href: "#contact", label: "Contato" },
 ];
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const close = () => window.innerWidth >= 768 && setMenuOpen(false);
+    window.addEventListener("resize", close);
+    return () => window.removeEventListener("resize", close);
   }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-
-    navItems.forEach((item) => {
-      const el = document.getElementById(item.id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
-    }
-  };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-background/85 backdrop-blur-lg border-b border-border"
-          : "bg-transparent"
-      }`}
+    <motion.header
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease }}
+      className="fixed inset-x-0 top-0 z-50 px-4 pt-4"
     >
-      <nav className="container mx-auto px-4 py-5">
-        <div className="flex items-center justify-between">
-          <button
-            onClick={() => scrollToSection("home")}
-            className="font-display text-xl font-semibold tracking-tight text-foreground"
-          >
-            Artur<span className="text-primary">.</span>Cagliari
-          </button>
+      <nav className="glass mx-auto flex h-14 max-w-3xl items-center justify-between rounded-full pl-5 pr-2">
+        <a href="#home" className="text-sm font-medium tracking-tight">
+          Artur Cagliari<span className="text-primary">.</span>
+        </a>
 
-          <div className="hidden md:flex items-center gap-10">
-            {navItems.map((item, index) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                aria-current={activeSection === item.id ? "page" : undefined}
-                className={`relative text-xs font-mono-ui uppercase tracking-[0.2em] transition-colors duration-300 ${
-                  activeSection === item.id
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
+        {/* Pílula que desliza entre os links no hover */}
+        <ul className="hidden items-center md:flex" onMouseLeave={() => setHovered(null)}>
+          {navItems.map((item) => (
+            <li key={item.href} className="relative">
+              {hovered === item.href && (
+                <motion.span
+                  layoutId="nav-hover"
+                  className="absolute inset-0 rounded-full bg-white/[0.07]"
+                  transition={{ type: "spring", stiffness: 400, damping: 34 }}
+                />
+              )}
+              <a
+                href={item.href}
+                onMouseEnter={() => setHovered(item.href)}
+                className="relative block px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                <span className="text-primary/50 mr-1">0{index + 1}</span>
                 {item.label}
-                {activeSection === item.id && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute -bottom-1.5 left-0 right-0 h-px bg-primary"
-                  />
-                )}
-              </button>
-            ))}
-          </div>
+              </a>
+            </li>
+          ))}
+        </ul>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Menu"
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-        </div>
+        <a href="mailto:arturcagliari2018@gmail.com" className="button-light hidden !min-h-10 md:inline-flex">
+          Vamos conversar
+          <ArrowUpRight className="h-3.5 w-3.5" />
+        </a>
 
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              className="md:hidden overflow-hidden"
-              variants={mobileMenuVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <div className="mt-6 pb-4 flex flex-col gap-5">
-                {navItems.map((item, index) => (
-                  <motion.button
-                    key={item.id}
-                    variants={mobileMenuItemVariants}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`text-left font-display text-2xl transition-colors ${
-                      activeSection === item.id ? "text-primary" : "text-foreground"
-                    }`}
-                  >
-                    <span className="text-sm font-mono-ui text-primary/50 mr-3">0{index + 1}</span>
-                    {item.label}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <button
+          type="button"
+          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+          className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-white/[0.07] md:hidden"
+        >
+          {menuOpen ? <X className="h-[18px] w-[18px]" /> : <Menu className="h-[18px] w-[18px]" />}
+        </button>
       </nav>
-    </header>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.98 }}
+            transition={{ duration: 0.3, ease }}
+            className="glass-dark mx-auto mt-2 max-w-3xl rounded-3xl bg-[hsl(230_30%_8%/0.9)] p-2 md:hidden"
+          >
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className="block rounded-2xl px-4 py-3.5 text-base transition-colors hover:bg-white/[0.06]"
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              href="mailto:arturcagliari2018@gmail.com"
+              onClick={() => setMenuOpen(false)}
+              className="button-light mt-2 w-full"
+            >
+              Vamos conversar
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 

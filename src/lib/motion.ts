@@ -129,3 +129,5 @@ export const mobileMenuItemVariants: Variants = {
 };
 
 export const getTagRotation = (index: number) => ((index % 5) - 2) * 3;
+
+export const ease = [0.22, 1, 0.36, 1] as const;

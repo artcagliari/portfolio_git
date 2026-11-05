@@ -1,181 +1,99 @@
-import { useRef } from "react";
-import { ArrowRight, ArrowDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import CodeWindow from "./CodeWindow";
 import { motion } from "framer-motion";
-import {
-  containerVariants,
-  itemVariants,
-  codeWindowVariants,
-  defaultViewport,
-} from "@/lib/motion";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import profileImage from "@/assets/profile-optimized.jpg";
+import { MaskLines } from "./Reveal";
+import { ease } from "@/lib/motion";
 
-const scrollToSection = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-};
-
-const wordReveal = {
-  hidden: { y: "110%" },
-  visible: (i: number) => ({
-    y: "0%",
-    transition: { duration: 0.9, delay: 0.12 * i, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
+const float = (delay: number) => ({
+  animate: { y: [0, -8, 0] },
+  transition: { duration: 6, repeat: Infinity, ease: "easeInOut" as const, delay },
+});
 
 const Hero = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const revealRef = useRef<HTMLDivElement>(null);
-  const topRef = useRef<HTMLSpanElement>(null);
-  const spotlightRef = useRef<HTMLDivElement>(null);
-  const frame = useRef<number>();
-
-  const handleSectionMouseMove = (e: React.MouseEvent) => {
-    const { clientX, clientY } = e;
-    if (frame.current) cancelAnimationFrame(frame.current);
-
-    frame.current = requestAnimationFrame(() => {
-      if (spotlightRef.current && sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        spotlightRef.current.style.setProperty("--spot-x", `${clientX - rect.left}px`);
-        spotlightRef.current.style.setProperty("--spot-y", `${clientY - rect.top}px`);
-        spotlightRef.current.classList.add("is-active");
-      }
-      if (topRef.current && revealRef.current) {
-        const rect = revealRef.current.getBoundingClientRect();
-        topRef.current.style.setProperty("--reveal-x", `${clientX - rect.left}px`);
-        topRef.current.style.setProperty("--reveal-y", `${clientY - rect.top}px`);
-      }
-    });
-  };
-
-  const handleSectionMouseLeave = () => {
-    spotlightRef.current?.classList.remove("is-active");
-    if (topRef.current) {
-      topRef.current.style.setProperty("--reveal-x", "-1000px");
-      topRef.current.style.setProperty("--reveal-y", "-1000px");
-    }
-  };
-
   return (
     <section
       id="home"
-      ref={sectionRef}
-      onMouseMove={handleSectionMouseMove}
-      onMouseLeave={handleSectionMouseLeave}
-      className="min-h-screen flex flex-col justify-center pt-28 pb-16 relative overflow-hidden"
+      className="container-x grid min-h-[100svh] items-center gap-16 pb-20 pt-32 lg:grid-cols-[1.3fr_0.7fr] lg:gap-12 lg:pb-16 lg:pt-28"
     >
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.12] pointer-events-none" />
-      <div ref={spotlightRef} className="hero-spotlight" />
-
-      <div className="container mx-auto px-4 relative z-10 w-full">
-        <motion.div
-          className="flex items-center justify-between text-xs font-mono-ui uppercase tracking-[0.2em] text-muted-foreground mb-10 lg:mb-14"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+      <div>
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease, delay: 0.15 }}
+          className="glass inline-flex items-center gap-2.5 rounded-full px-3.5 py-1.5 text-xs text-muted-foreground"
         >
-          <span className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-            </span>
-            Disponível para projetos
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
           </span>
-          <span className="hidden sm:block">Carlos Barbosa, RS — BR</span>
+          Disponível para novos projetos
+        </motion.span>
+
+        <h1 className="mt-7 text-[clamp(2.4rem,5.2vw,4.4rem)] font-medium leading-[1.04] tracking-[-0.04em]">
+          <MaskLines
+            delay={0.25}
+            lines={[
+              { text: "Transformo ideias" },
+              { text: "em produtos digitais" },
+              { text: "claros e modernos.", className: "text-gradient" },
+            ]}
+          />
+        </h1>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease, delay: 0.65 }}
+        >
+          <p className="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Sou Artur Cagliari, desenvolvedor full stack. Crio sites e aplicações com interface
+            bem pensada e código sólido — do primeiro rascunho ao deploy.
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <a href="#portfolio" className="button-light group">
+              Ver projetos
+              <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+            </a>
+            <a href="#contact" className="button-glass group">
+              Fale comigo
+              <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          </div>
+        </motion.div>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 1.1, ease, delay: 0.35 }}
+        className="relative mx-auto w-full max-w-[380px] lg:ml-auto lg:mr-0"
+      >
+        <div className="absolute -inset-8 rounded-[3rem] bg-gradient-to-br from-primary/30 via-transparent to-accent/30 blur-3xl" />
+
+        <div className="glass relative rounded-[2rem] p-2">
+          <img
+            src={profileImage}
+            alt="Artur Cagliari, desenvolvedor full stack"
+            width="800"
+            height="1000"
+            fetchPriority="high"
+            className="aspect-[4/5] w-full rounded-[1.6rem] object-cover"
+          />
+        </div>
+
+        <motion.div {...float(0)} className="glass-dark absolute -left-4 bottom-10 rounded-2xl px-4 py-3 sm:-left-10">
+          <p className="text-sm font-medium">Artur Cagliari</p>
+          <p className="mt-0.5 text-xs text-foreground/70">Full Stack Developer</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
-          <motion.div
-            className="space-y-8"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <div ref={revealRef} className="hero-reveal relative text-mega select-none">
-              <div className="overflow-hidden">
-                <motion.span
-                  className="block text-outline opacity-35"
-                  variants={wordReveal}
-                  custom={0}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  Artur
-                </motion.span>
-              </div>
-              <div className="overflow-hidden">
-                <motion.span
-                  className="block text-shimmer italic"
-                  variants={wordReveal}
-                  custom={1}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  Cagliari
-                </motion.span>
-              </div>
-              <span
-                ref={topRef}
-                className="hero-reveal__top absolute inset-0 text-mega pointer-events-none"
-                aria-hidden="true"
-              >
-                <span className="block text-outline">Artur</span>
-                <span className="block text-shimmer italic">Cagliari</span>
-              </span>
-            </div>
-
-            <motion.div variants={itemVariants} className="space-y-4 max-w-lg">
-              <p className="editorial-eyebrow">
-                <span className="w-8 h-px bg-primary" />
-                Full Stack Developer
-              </p>
-              <p className="text-muted-foreground leading-relaxed text-lg">
-                Desenvolvo aplicações web completas — do frontend ao backend — unindo design
-                refinado, performance e código limpo.
-              </p>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-              <Button
-                size="lg"
-                onClick={() => scrollToSection("portfolio")}
-                className="group bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-7"
-              >
-                Ver projetos
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => scrollToSection("contact")}
-                className="rounded-full px-7 border-border hover:border-primary/50 hover:bg-primary/5"
-              >
-                Contato
-              </Button>
-            </motion.div>
-
-            <motion.button
-              variants={itemVariants}
-              onClick={() => scrollToSection("about")}
-              className="flex items-center gap-2 text-xs font-mono-ui uppercase tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors"
-            >
-              <ArrowDown className="w-4 h-4 animate-bounce" />
-              Role para explorar
-            </motion.button>
-          </motion.div>
-
-          <motion.div
-            className="relative flex justify-center lg:justify-end"
-            variants={codeWindowVariants}
-            initial="hidden"
-            animate="visible"
-            viewport={defaultViewport}
-          >
-            <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full scale-75 pointer-events-none" />
-            <CodeWindow />
-          </motion.div>
-        </div>
-      </div>
+        <motion.div
+          {...float(1.5)}
+          className="glass-dark absolute -right-3 top-10 rounded-full px-3.5 py-1.5 text-xs sm:-right-8"
+        >
+          React · Laravel
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

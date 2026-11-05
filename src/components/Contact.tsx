@@ -1,147 +1,75 @@
-import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, Github, Instagram, MapPin, Phone, Download, ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { ArrowUpRight, Check, Copy, Github, Instagram, Linkedin } from "lucide-react";
 import Footer from "./Footer";
-import { containerVariants, itemVariants, titleVariants, defaultViewport } from "@/lib/motion";
+import { MaskLines, Reveal } from "./Reveal";
 
-const EMAIL_LINK =
-  "https://mail.google.com/mail/?view=cm&fs=1&to=arturcagliari2018@gmail.com&su=Contato%20-%20Portf%C3%B3lio&body=Ol%C3%A1%20Artur,%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.";
+const EMAIL = "arturcagliari2018@gmail.com";
 
-const contactMethods = [
-  {
-    icon: Mail,
-    title: "Email",
-    value: "arturcagliari2018@gmail.com",
-    link: EMAIL_LINK,
-  },
-  {
-    icon: Phone,
-    title: "WhatsApp",
-    value: "+55 (54) 99665-6386",
-    link: "https://wa.me/5554996656386?text=Ol%C3%A1%20Artur,%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.",
-  },
-  {
-    icon: MapPin,
-    title: "Localização",
-    value: "Carlos Barbosa, RS",
-    link: "https://maps.google.com/?q=Carlos Barbosa, RS",
-  },
-];
-
-const socialLinks = [
-  { icon: Github, title: "GitHub", link: "https://github.com/artcagliari" },
-  { icon: Linkedin, title: "LinkedIn", link: "https://www.linkedin.com/in/artur-cagliari-206b0936b" },
-  { icon: Instagram, title: "Instagram", link: "https://www.instagram.com/artur.cagliari" },
+const socials = [
+  { label: "GitHub", href: "https://github.com/artcagliari", icon: Github },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/artur-cagliari-206b0936b", icon: Linkedin },
+  { label: "Instagram", href: "https://www.instagram.com/artur.cagliari", icon: Instagram },
 ];
 
 const Contact = () => {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${EMAIL}`;
+    }
+  };
+
   return (
-    <section id="contact" className="py-24 relative section-glow">
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          className="max-w-3xl"
-          initial="hidden"
-          whileInView="visible"
-          viewport={defaultViewport}
-          variants={containerVariants}
-        >
-          <motion.span variants={titleVariants} className="editorial-eyebrow mb-5">
-            <span className="w-8 h-px bg-primary" />
-            03 — Contato
-          </motion.span>
-          <motion.h2
-            variants={titleVariants}
-            className="font-display font-semibold tracking-tight text-5xl md:text-7xl mb-6"
-          >
-            Vamos criar algo <span className="text-shimmer italic">juntos</span>
-          </motion.h2>
-          <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-xl mb-10">
-            Estou disponível para trabalhos freelance e oportunidades full-time. Escolha o
-            canal que preferir para conversar.
-          </motion.p>
+    <section id="contact" className="container-x pt-24 sm:pt-32">
+      <Reveal className="relative">
+        <div className="absolute inset-x-10 -inset-y-6 rounded-[3rem] bg-gradient-to-r from-primary/20 to-accent/20 blur-3xl" />
 
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-16">
-            <Button
-              size="lg"
-              className="group bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-7"
-              onClick={() => window.open(EMAIL_LINK, "_blank")}
-            >
-              <Mail className="w-4 h-4 mr-2" />
-              Enviar email
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="rounded-full px-7 border-border hover:border-primary/50 hover:bg-primary/5"
-              onClick={() =>
-                window.open(
-                  "https://drive.google.com/drive/folders/1weAKkTYcr_j0vqh8-cd0lZtwdJUkkrWp?usp=drive_link",
-                  "_blank"
-                )
-              }
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Download CV
-            </Button>
-          </motion.div>
-        </motion.div>
+        <div className="glass relative rounded-[2rem] px-6 py-14 text-center sm:px-12 sm:py-20">
+          <p className="eyebrow">Contato</p>
+          <h2 className="mx-auto mt-5 text-[clamp(2.4rem,6vw,4.5rem)] font-medium leading-[1.04] tracking-[-0.04em]">
+            <MaskLines
+              inView
+              lines={[{ text: "Tem uma ideia?" }, { text: "Vamos tirar do papel.", className: "text-gradient" }]}
+            />
+          </h2>
+          <p className="mx-auto mt-6 max-w-md leading-relaxed text-muted-foreground">
+            Disponível para projetos freelance, colaborações e oportunidades de desenvolvimento.
+          </p>
 
-        <motion.div
-          className="grid md:grid-cols-3 gap-px bg-border border border-border rounded-xl overflow-hidden mb-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-        >
-          {contactMethods.map((method) => {
-            const Icon = method.icon;
-            return (
-              <motion.button
-                key={method.title}
-                variants={itemVariants}
-                onClick={() => window.open(method.link, "_blank")}
-                className="group text-left bg-card p-8 hover:bg-secondary/40 transition-colors"
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href={`mailto:${EMAIL}?subject=Novo%20projeto`} className="button-light group max-w-full">
+              <span className="truncate">{EMAIL}</span>
+              <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+            <button type="button" onClick={copyEmail} className="button-glass">
+              {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4 text-muted-foreground" />}
+              <span aria-live="polite">{copied ? "Copiado" : "Copiar e-mail"}</span>
+            </button>
+          </div>
+
+          <div className="mt-10 flex justify-center gap-2">
+            {socials.map(({ label, href, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:text-foreground"
               >
-                <Icon className="w-6 h-6 text-primary mb-6" />
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono-ui uppercase tracking-[0.2em] text-muted-foreground">
-                    {method.title}
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                </div>
-                <p className="text-base mt-2 break-all group-hover:text-primary transition-colors">
-                  {method.value}
-                </p>
-              </motion.button>
-            );
-          })}
-        </motion.div>
+                <Icon className="h-[18px] w-[18px]" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </Reveal>
 
-        <motion.div
-          className="flex flex-wrap gap-3"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          {socialLinks.map((social) => {
-            const Icon = social.icon;
-            return (
-              <motion.button
-                key={social.title}
-                variants={itemVariants}
-                onClick={() => window.open(social.link, "_blank")}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border text-sm text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-              >
-                <Icon className="w-4 h-4" />
-                {social.title}
-              </motion.button>
-            );
-          })}
-        </motion.div>
-
-        <Footer />
-      </div>
+      <Footer />
     </section>
   );
 };
