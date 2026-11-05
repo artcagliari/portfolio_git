@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { ease } from "@/lib/motion";
+import ArrowSwap from "./ArrowSwap";
+import Magnetic from "./Magnetic";
+import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
   { href: "#portfolio", label: "Projetos" },
@@ -29,7 +32,7 @@ const Header = () => {
     >
       <nav className="glass mx-auto flex h-14 max-w-3xl items-center justify-between rounded-full pl-5 pr-2">
         <a href="#home" className="text-sm font-medium tracking-tight">
-          Artur Cagliari<span className="text-primary">.</span>
+          Artur Cagliari<span className="text-muted-foreground">.</span>
         </a>
 
         {/* Pílula que desliza entre os links no hover */}
@@ -39,7 +42,7 @@ const Header = () => {
               {hovered === item.href && (
                 <motion.span
                   layoutId="nav-hover"
-                  className="absolute inset-0 rounded-full bg-white/[0.07]"
+                  className="absolute inset-0 rounded-full bg-tint/[0.07]"
                   transition={{ type: "spring", stiffness: 400, damping: 34 }}
                 />
               )}
@@ -54,20 +57,25 @@ const Header = () => {
           ))}
         </ul>
 
-        <a href="mailto:arturcagliari2018@gmail.com" className="button-light hidden !min-h-10 md:inline-flex">
-          Vamos conversar
-          <ArrowUpRight className="h-3.5 w-3.5" />
-        </a>
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
+          <Magnetic className="hidden md:inline-flex">
+            <a href="mailto:arturcagliari2018@gmail.com" className="button-light group !min-h-10">
+              Vamos conversar
+              <ArrowSwap className="h-3.5 w-3.5" />
+            </a>
+          </Magnetic>
 
-        <button
-          type="button"
-          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
-          className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-white/[0.07] md:hidden"
-        >
-          {menuOpen ? <X className="h-[18px] w-[18px]" /> : <Menu className="h-[18px] w-[18px]" />}
-        </button>
+          <button
+            type="button"
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+            className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-tint/[0.07] active:scale-95 md:hidden"
+          >
+            {menuOpen ? <X className="h-[18px] w-[18px]" /> : <Menu className="h-[18px] w-[18px]" />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -77,14 +85,14 @@ const Header = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.3, ease }}
-            className="glass-dark mx-auto mt-2 max-w-3xl rounded-3xl bg-[hsl(230_30%_8%/0.9)] p-2 md:hidden"
+            className="glass-strong mx-auto mt-2 max-w-3xl rounded-3xl !bg-background/90 p-2 md:hidden"
           >
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="block rounded-2xl px-4 py-3.5 text-base transition-colors hover:bg-white/[0.06]"
+                className="block rounded-2xl px-4 py-3.5 text-base transition-colors hover:bg-tint/[0.06]"
               >
                 {item.label}
               </a>
@@ -92,10 +100,10 @@ const Header = () => {
             <a
               href="mailto:arturcagliari2018@gmail.com"
               onClick={() => setMenuOpen(false)}
-              className="button-light mt-2 w-full"
+              className="button-light group mt-2 w-full"
             >
               Vamos conversar
-              <ArrowUpRight className="h-4 w-4" />
+              <ArrowSwap />
             </a>
           </motion.div>
         )}

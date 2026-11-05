@@ -1,5 +1,7 @@
-import { ArrowUpRight, Code2, LayoutTemplate, Rocket } from "lucide-react";
+import { Code2, LayoutTemplate, Rocket } from "lucide-react";
 import { trackSpotlight } from "@/lib/spotlight";
+import ArrowSwap from "./ArrowSwap";
+import Magnetic from "./Magnetic";
 import { Reveal, SectionHeading } from "./Reveal";
 
 const services = [
@@ -34,15 +36,18 @@ const About = () => {
               no IFRS e experiência com React e Laravel em ambiente profissional. Gosto de cuidar do
               produto inteiro: estratégia, interface, código e publicação.
             </p>
-            <a
-              href="https://drive.google.com/drive/folders/1weAKkTYcr_j0vqh8-cd0lZtwdJUkkrWp?usp=drive_link"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button-glass group self-start"
-            >
-              Ver currículo
-              <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
+            <Magnetic className="self-start">
+              <a
+                href="https://drive.google.com/drive/folders/1weAKkTYcr_j0vqh8-cd0lZtwdJUkkrWp?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+                onMouseMove={trackSpotlight}
+                className="button-glass group"
+              >
+                Ver currículo
+                <ArrowSwap />
+              </a>
+            </Magnetic>
           </div>
         </div>
       </Reveal>
@@ -52,7 +57,7 @@ const About = () => {
           <Reveal key={title} delay={index * 0.08}>
             <div onMouseMove={trackSpotlight} className="glass glass-hover spotlight h-full rounded-[1.5rem] p-6">
               <div>
-                <span className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/5 text-primary">
+                <span className="grid h-11 w-11 place-items-center rounded-xl border border-tint/10 bg-tint/5 text-primary">
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-6 text-lg font-medium">{title}</h3>

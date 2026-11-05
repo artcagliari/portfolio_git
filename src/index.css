@@ -3,27 +3,75 @@
 @tailwind utilities;
 
 @layer base {
+  /* Tema escuro neutro (padrão): preto e grafite */
   :root {
-    --background: 230 32% 5%;
-    --foreground: 220 30% 96%;
-    --card: 230 26% 9%;
-    --card-foreground: 220 30% 96%;
-    --popover: 230 26% 9%;
-    --popover-foreground: 220 30% 96%;
-    --primary: 217 91% 70%;
-    --primary-foreground: 230 32% 6%;
-    --secondary: 230 22% 13%;
-    --secondary-foreground: 220 30% 96%;
-    --muted: 230 22% 13%;
-    --muted-foreground: 225 14% 66%;
-    --accent: 262 83% 74%;
-    --accent-foreground: 230 32% 6%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 0 0% 78%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 11%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 11%;
+    --muted-foreground: 0 0% 62%;
+    --accent: 0 0% 48%;
+    --accent-foreground: 0 0% 96%;
     --destructive: 0 75% 60%;
-    --destructive-foreground: 220 30% 96%;
-    --border: 230 20% 16%;
-    --input: 230 20% 16%;
-    --ring: 217 91% 70%;
+    --destructive-foreground: 0 0% 96%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 78%;
     --radius: 1rem;
+
+    --tint: 0 0% 100%;
+    --glass-from: 0 0% 100% / 0.06;
+    --glass-to: 0 0% 100% / 0.02;
+    --glass-border: 0 0% 100% / 0.09;
+    --glass-highlight: 0 0% 100% / 0.07;
+    --glass-shadow: 0 0% 0% / 0.9;
+    --glass-strong: 0 0% 6% / 0.6;
+    --glow-1: 0 0% 100% / 0.08;
+    --glow-2: 0 0% 80% / 0.06;
+    --glow-3: 0 0% 100% / 0.05;
+
+    color-scheme: dark;
+  }
+
+  /* Tema claro neutro: branco e cinza */
+  :root.light {
+    --background: 0 0% 97%;
+    --foreground: 0 0% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+    --primary: 0 0% 32%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 0 0% 7%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 0% 60%;
+    --accent-foreground: 0 0% 7%;
+    --border: 0 0% 87%;
+    --input: 0 0% 87%;
+    --ring: 0 0% 20%;
+
+    --tint: 0 0% 0%;
+    --glass-from: 0 0% 100% / 0.75;
+    --glass-to: 0 0% 100% / 0.45;
+    --glass-border: 0 0% 0% / 0.08;
+    --glass-highlight: 0 0% 100% / 0.9;
+    --glass-shadow: 0 0% 40% / 0.35;
+    --glass-strong: 0 0% 100% / 0.75;
+    --glow-1: 0 0% 70% / 0.35;
+    --glow-2: 0 0% 60% / 0.25;
+    --glow-3: 0 0% 75% / 0.3;
+
+    color-scheme: light;
   }
 
   * {
@@ -34,7 +82,6 @@
   html {
     scroll-behavior: smooth;
     overflow-x: clip;
-    color-scheme: dark;
   }
 
   body {
@@ -46,6 +93,7 @@
     font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    transition: background-color 500ms ease, color 500ms ease;
   }
 
   /* Brilhos de fundo: dão o que desfocar atrás do vidro */
@@ -56,9 +104,9 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(38% 32% at 18% 12%, hsl(217 91% 58% / 0.2), transparent 70%),
-      radial-gradient(34% 30% at 88% 28%, hsl(262 83% 62% / 0.16), transparent 70%),
-      radial-gradient(40% 34% at 45% 92%, hsl(232 85% 56% / 0.13), transparent 70%);
+      radial-gradient(38% 32% at 18% 12%, hsl(var(--glow-1)), transparent 70%),
+      radial-gradient(34% 30% at 88% 28%, hsl(var(--glow-2)), transparent 70%),
+      radial-gradient(40% 34% at 45% 92%, hsl(var(--glow-3)), transparent 70%);
     animation: drift 28s ease-in-out infinite alternate;
   }
 
@@ -77,13 +125,13 @@
   }
 
   :focus-visible {
-    outline: 2px solid hsl(var(--primary));
+    outline: 2px solid hsl(var(--ring));
     outline-offset: 3px;
   }
 
   ::selection {
-    color: hsl(var(--primary-foreground));
-    background: hsl(var(--primary));
+    color: hsl(var(--background));
+    background: hsl(var(--foreground));
   }
 }
 
@@ -101,30 +149,31 @@
   }
 
   .eyebrow {
-    @apply font-mono-ui text-xs uppercase tracking-[0.18em] text-primary;
+    @apply font-mono-ui text-xs uppercase tracking-[0.18em] text-muted-foreground;
   }
 
+  /* Degradê prateado, do texto principal ao cinza */
   .text-gradient {
-    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent;
   }
 
   .glass {
-    background: linear-gradient(180deg, hsl(0 0% 100% / 0.065), hsl(0 0% 100% / 0.025));
-    border: 1px solid hsl(0 0% 100% / 0.09);
+    background: linear-gradient(180deg, hsl(var(--glass-from)), hsl(var(--glass-to)));
+    border: 1px solid hsl(var(--glass-border));
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     backdrop-filter: blur(14px) saturate(140%);
     box-shadow:
-      inset 0 1px 0 hsl(0 0% 100% / 0.07),
-      0 24px 60px -30px hsl(230 60% 2% / 0.9);
+      inset 0 1px 0 hsl(var(--glass-highlight)),
+      0 24px 60px -30px hsl(var(--glass-shadow));
   }
 
-  /* Vidro escuro para elementos sobre fundos claros (ex.: foto) */
-  .glass-dark {
-    background: hsl(230 30% 8% / 0.55);
-    border: 1px solid hsl(0 0% 100% / 0.12);
+  /* Vidro mais denso para elementos sobre fotos e menus */
+  .glass-strong {
+    background: hsl(var(--glass-strong));
+    border: 1px solid hsl(var(--glass-border));
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     backdrop-filter: blur(14px) saturate(140%);
-    box-shadow: 0 16px 40px -16px hsl(230 60% 2% / 0.7);
+    box-shadow: 0 16px 40px -16px hsl(var(--glass-shadow));
   }
 
   .glass-hover {
@@ -136,7 +185,7 @@
 
   .glass-hover:hover {
     transform: translateY(-4px);
-    border-color: hsl(0 0% 100% / 0.18);
+    border-color: hsl(var(--tint) / 0.18);
   }
 
   /* Luz suave que acompanha o cursor dentro do card (ver lib/spotlight) */
@@ -151,7 +200,7 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), hsl(var(--primary) / 0.12), transparent 45%);
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), hsl(var(--tint) / 0.08), transparent 45%);
     opacity: 0;
     transition: opacity 400ms ease;
   }
@@ -165,16 +214,74 @@
     z-index: 1;
   }
 
+  /* Botão sólido: brilho que atravessa no hover e "afunda" ao clicar */
   .button-light {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background transition-[transform,opacity] duration-300 hover:-translate-y-0.5 hover:opacity-90;
+    @apply relative isolate inline-flex min-h-11 items-center justify-center gap-2 overflow-hidden rounded-full bg-foreground px-5 text-sm font-medium text-background transition-[transform,box-shadow] duration-300 active:scale-[0.97];
+  }
+
+  .button-light::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, hsl(var(--background) / 0.18) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .button-light:hover {
+    box-shadow: 0 10px 30px -10px hsl(var(--foreground) / 0.45);
+  }
+
+  .button-light:hover::after {
+    transform: translateX(120%);
   }
 
   .button-glass {
-    @apply glass inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-white/20;
+    @apply glass spotlight inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition-[transform,border-color,background-color] duration-300 hover:border-tint/20 hover:bg-tint/[0.06] active:scale-[0.97];
   }
 
   .chip {
-    @apply rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-muted-foreground;
+    @apply rounded-full border border-tint/10 bg-tint/5 px-2.5 py-1 text-[11px] text-muted-foreground transition-colors;
+  }
+
+  /* Seta que sai por um lado e entra pelo outro (ver ArrowSwap) */
+  .arrow-swap {
+    display: inline-grid;
+    overflow: hidden;
+  }
+
+  .arrow-swap > * {
+    grid-area: 1 / 1;
+    transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .arrow-swap > :last-child {
+    transform: translate(-120%, 120%);
+  }
+
+  .group:hover .arrow-swap > :first-child {
+    transform: translate(120%, -120%);
+  }
+
+  .group:hover .arrow-swap > :last-child {
+    transform: translate(0, 0);
+  }
+
+  .arrow-swap-down > :last-child {
+    transform: translateY(-120%);
+  }
+
+  .group:hover .arrow-swap-down > :first-child {
+    transform: translateY(120%);
+  }
+
+  .arrow-swap-up > :last-child {
+    transform: translateY(120%);
+  }
+
+  .group:hover .arrow-swap-up > :first-child {
+    transform: translateY(-120%);
   }
 }
 

@@ -37,7 +37,7 @@ const Stacks = () => (
             onMouseMove={trackSpotlight}
             className="glass glass-hover spotlight group flex items-center gap-3 rounded-2xl p-3 sm:gap-4 sm:p-4"
           >
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.06] transition-transform duration-500 group-hover:scale-110 sm:h-12 sm:w-12">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-tint/10 bg-tint/[0.06] transition-transform duration-500 group-hover:scale-110 sm:h-12 sm:w-12">
               <img src={`${DEVICON}/${stack.icon}.svg`} alt="" width="28" height="28" loading="lazy" className="h-6 w-6 sm:h-7 sm:w-7" />
             </span>
             <span className="truncate text-sm font-medium sm:text-base">{stack.name}</span>

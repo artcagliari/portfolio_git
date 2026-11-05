@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import ArrowSwap from "./ArrowSwap";
 import { projects } from "@/data/projects";
 import { trackSpotlight } from "@/lib/spotlight";
 import { Reveal, SectionHeading } from "./Reveal";
@@ -59,8 +59,8 @@ const Portfolio = () => {
                       ))}
                     </div>
                   </div>
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 text-muted-foreground transition-all duration-500 group-hover:rotate-45 group-hover:border-transparent group-hover:bg-foreground group-hover:text-background">
-                    <ArrowUpRight className="h-4 w-4" />
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-tint/10 text-muted-foreground transition-all duration-500 group-hover:scale-110 group-hover:border-transparent group-hover:bg-foreground group-hover:text-background">
+                    <ArrowSwap />
                   </span>
                 </div>
               </a>

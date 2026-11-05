@@ -6,7 +6,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <meta name="theme-color" content="#090b12" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <script>
+      // Aplica o tema salvo antes da renderização para evitar piscar
+      try {
+        if (localStorage.getItem("theme") === "light") document.documentElement.classList.add("light");
+      } catch (e) {}
+    </script>
     <title>Artur Cagliari — Desenvolvedor Full Stack</title>
     <meta name="description" content="Portfólio de Artur Cagliari, desenvolvedor full stack. Sites e aplicações responsivas com React, TypeScript, Laravel e direção visual." />
     <meta name="author" content="Artur Cagliari" />

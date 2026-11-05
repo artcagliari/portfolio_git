@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
 import profileImage from "@/assets/profile-optimized.jpg";
 import { MaskLines } from "./Reveal";
+import ArrowSwap from "./ArrowSwap";
+import Magnetic from "./Magnetic";
 import { ease } from "@/lib/motion";
+import { trackSpotlight } from "@/lib/spotlight";
 
 const float = (delay: number) => ({
   animate: { y: [0, -8, 0] },
@@ -51,14 +53,18 @@ const Hero = () => {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a href="#portfolio" className="button-light group">
-              Ver projetos
-              <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
-            </a>
-            <a href="#contact" className="button-glass group">
-              Fale comigo
-              <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
+            <Magnetic>
+              <a href="#portfolio" className="button-light group">
+                Ver projetos
+                <ArrowSwap direction="down" />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a href="#contact" onMouseMove={trackSpotlight} className="button-glass group">
+                Fale comigo
+                <ArrowSwap />
+              </a>
+            </Magnetic>
           </div>
         </motion.div>
       </div>
@@ -69,7 +75,7 @@ const Hero = () => {
         transition={{ duration: 1.1, ease, delay: 0.35 }}
         className="relative mx-auto w-full max-w-[380px] lg:ml-auto lg:mr-0"
       >
-        <div className="absolute -inset-8 rounded-[3rem] bg-gradient-to-br from-primary/30 via-transparent to-accent/30 blur-3xl" />
+        <div className="absolute -inset-8 rounded-[3rem] bg-gradient-to-br from-tint/[0.12] via-transparent to-tint/[0.06] blur-3xl" />
 
         <div className="glass relative rounded-[2rem] p-2">
           <img
@@ -82,14 +88,14 @@ const Hero = () => {
           />
         </div>
 
-        <motion.div {...float(0)} className="glass-dark absolute -left-4 bottom-10 rounded-2xl px-4 py-3 sm:-left-10">
+        <motion.div {...float(0)} className="glass-strong absolute -left-4 bottom-10 rounded-2xl px-4 py-3 sm:-left-10">
           <p className="text-sm font-medium">Artur Cagliari</p>
           <p className="mt-0.5 text-xs text-foreground/70">Full Stack Developer</p>
         </motion.div>
 
         <motion.div
           {...float(1.5)}
-          className="glass-dark absolute -right-3 top-10 rounded-full px-3.5 py-1.5 text-xs sm:-right-8"
+          className="glass-strong absolute -right-3 top-10 rounded-full px-3.5 py-1.5 text-xs sm:-right-8"
         >
           React · Laravel
         </motion.div>
